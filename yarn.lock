@@ -769,7 +769,7 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/bson@*":
+"@types/bson@*", "@types/bson@1.x || 4.0.x":
   "integrity" "sha512-mVRvYnTOZJz3ccpxhr3wgxVmSeiYinW+zlzQz3SXWaJmD1DuL05Jeq7nKw3SnbKmbleW5qrLG5vdyWe/A9sXhw=="
   "resolved" "https://registry.npmjs.org/@types/bson/-/bson-4.0.3.tgz"
   "version" "4.0.3"
@@ -824,11 +824,6 @@
   "integrity" "sha512-TmCW5HoZ2o2/z2EYi109jLqIaPIi9y/lc2LmDCWzuCi35bcaQ+OtUh6nwBiFK7SOu25FAU5+YKdqFZUwtqGSdg=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-16.0.0.tgz"
   "version" "16.0.0"
-
-"@types/node@14.x || 15.x":
-  "integrity" "sha512-wF6hazbsnwaW3GhK4jFuw5NaLDQVRQ6pWQUGAUrJzxixFkTaODSiAKMPXuHwPEPkAKQWHAzj6uJ5h+3zU9gQxg=="
-  "resolved" "https://registry.npmjs.org/@types/node/-/node-15.14.1.tgz"
-  "version" "15.14.1"
 
 "@types/normalize-package-data@^2.4.0":
   "integrity" "sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA=="
@@ -2139,9 +2134,9 @@
   "version" "1.0.0"
 
 "denque@^1.4.1":
-  "integrity" "sha512-CYiCSgIF1p6EUByQPlGkKnP1M9g0ZV3qMIrqMqZqdwazygIA/YP2vrbcyl1h/WppKJTdl1F85cXIle+394iDAQ=="
-  "resolved" "https://registry.npmjs.org/denque/-/denque-1.5.0.tgz"
-  "version" "1.5.0"
+  "integrity" "sha512-XwE+iZ4D6ZUB7mfYRMb5wByE8L74HCn30FBN7sWnXksWc1LO1bPDl67pBR9o/kC4z/xSNAwkMYcGgqDV3BE3Hw=="
+  "resolved" "https://registry.npmjs.org/denque/-/denque-1.5.1.tgz"
+  "version" "1.5.1"
 
 "depd@^1.1.0", "depd@~1.1.2":
   "integrity" "sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak= sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ=="
@@ -4779,15 +4774,15 @@
   "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
   "version" "2.29.1"
 
-"mongodb@3.6.8":
-  "integrity" "sha512-sDjJvI73WjON1vapcbyBD3Ao9/VN3TKYY8/QX9EPbs22KaCSrQ5rXo5ZZd44tWJ3wl3FlnrFZ+KyUtNH6+1ZPQ=="
-  "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-3.6.8.tgz"
-  "version" "3.6.8"
+"mongodb@3.7.3":
+  "integrity" "sha512-Psm+g3/wHXhjBEktkxXsFMZvd3nemI0r3IPsE0bU+4//PnvNWKkzhZcEsbPcYiWqe8XqXJJEg4Tgtr7Raw67Yw=="
+  "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-3.7.3.tgz"
+  "version" "3.7.3"
   dependencies:
     "bl" "^2.2.1"
     "bson" "^1.1.4"
     "denque" "^1.4.1"
-    "optional-require" "^1.0.3"
+    "optional-require" "^1.1.8"
     "safe-buffer" "^5.1.2"
   optionalDependencies:
     "saslprep" "^1.0.0"
@@ -4797,20 +4792,21 @@
   "resolved" "https://registry.npmjs.org/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz"
   "version" "1.0.2"
 
-"mongoose@*", "mongoose@^5.7.7":
-  "integrity" "sha512-sBUKJGpdwZCq9102Lj6ZOaLcW4z/T4TI9aGWrNX5ZlICwChKWG4Wo5qriLImdww3H7bETPW9vYtSiADNlA4wSQ=="
-  "resolved" "https://registry.npmjs.org/mongoose/-/mongoose-5.13.2.tgz"
-  "version" "5.13.2"
+"mongoose@*", "mongoose@^5.13.16":
+  "integrity" "sha512-kBNB+BfaQjn3Jjh1SfdZZub70pde9dI0sA8VN6AnnCOeK4TzbLDyB0lBmPBOajppm6U9orde5YfTRyyVa1U45w=="
+  "resolved" "https://registry.npmjs.org/mongoose/-/mongoose-5.13.16.tgz"
+  "version" "5.13.16"
   dependencies:
+    "@types/bson" "1.x || 4.0.x"
     "@types/mongodb" "^3.5.27"
-    "@types/node" "14.x || 15.x"
     "bson" "^1.1.4"
     "kareem" "2.3.2"
-    "mongodb" "3.6.8"
+    "mongodb" "3.7.3"
     "mongoose-legacy-pluralize" "1.0.2"
-    "mpath" "0.8.3"
+    "mpath" "0.8.4"
     "mquery" "3.2.5"
     "ms" "2.1.2"
+    "optional-require" "1.0.x"
     "regexp-clone" "1.0.0"
     "safe-buffer" "5.2.1"
     "sift" "13.5.2"
@@ -4827,10 +4823,10 @@
     "on-finished" "~2.3.0"
     "on-headers" "~1.0.2"
 
-"mpath@0.8.3":
-  "integrity" "sha512-eb9rRvhDltXVNL6Fxd2zM9D4vKBxjVVQNLNijlj7uoXUy19zNDsIif5zR+pWmPCWNKwAtqyo4JveQm4nfD5+eA=="
-  "resolved" "https://registry.npmjs.org/mpath/-/mpath-0.8.3.tgz"
-  "version" "0.8.3"
+"mpath@0.8.4":
+  "integrity" "sha512-DTxNZomBcTWlrMW76jy1wvV37X/cNNxPW1y2Jzd4DZkAaC5ZGsm8bfGfNOthcDuRJujXLqiuS6o3Tpy0JEoh7g=="
+  "resolved" "https://registry.npmjs.org/mpath/-/mpath-0.8.4.tgz"
+  "version" "0.8.4"
 
 "mquery@3.2.5":
   "integrity" "sha512-VjOKHHgU84wij7IUoZzFRU07IAxd5kWJaDmyUzQlbjHjyoeK5TNeeo8ZsFDtTYnSgpW6n/nMNIHvE3u8Lbrf4A=="
@@ -5147,7 +5143,14 @@
   "resolved" "https://registry.npmjs.org/openapi-types/-/openapi-types-12.1.0.tgz"
   "version" "12.1.0"
 
-"optional-require@^1.0.3":
+"optional-require@^1.1.8":
+  "integrity" "sha512-jq83qaUb0wNg9Krv1c5OQ+58EK+vHde6aBPzLvPPqJm89UQWsvSuFy9X/OSNJnFeSOKo7btE0n8Nl2+nE+z5nA=="
+  "resolved" "https://registry.npmjs.org/optional-require/-/optional-require-1.1.8.tgz"
+  "version" "1.1.8"
+  dependencies:
+    "require-at" "^1.0.6"
+
+"optional-require@1.0.x":
   "integrity" "sha512-RV2Zp2MY2aeYK5G+B/Sps8lW5NHAzE5QClbFP15j+PWmP+T9PxlJXBOOLoSAdgwFvS4t0aMR4vpedMkbHfh0nA=="
   "resolved" "https://registry.npmjs.org/optional-require/-/optional-require-1.0.3.tgz"
   "version" "1.0.3"
@@ -5865,6 +5868,11 @@
     "tunnel-agent" "^0.6.0"
     "uuid" "^3.3.2"
 
+"require-at@^1.0.6":
+  "integrity" "sha512-7i1auJbMUrXEAZCOQ0VNJgmcT2VOKPRl2YGJwgpHpC9CE91Mv4/4UYIUm4chGJaI381ZDq1JUicFii64Hapd8g=="
+  "resolved" "https://registry.npmjs.org/require-at/-/require-at-1.0.6.tgz"
+  "version" "1.0.6"
+
 "require-directory@^2.1.1":
   "integrity" "sha1-jGStX9MNqxyXbiNE/+f3kqam30I= sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q=="
   "resolved" "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz"
@@ -6344,7 +6352,7 @@
   "version" "0.7.3"
 
 "sparse-bitfield@^3.0.3":
-  "integrity" "sha1-/0rm5oZWBWuks+eSqzM004JzyhE= sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ=="
+  "integrity" "sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ=="
   "resolved" "https://registry.npmjs.org/sparse-bitfield/-/sparse-bitfield-3.0.3.tgz"
   "version" "3.0.3"
   dependencies:

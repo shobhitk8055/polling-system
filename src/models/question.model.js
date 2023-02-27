@@ -8,8 +8,15 @@ const questionSchema = mongoose.Schema(
       type: String,
       required: true,
       index: true,
-    }
+    },
+    options: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Question',
+      },
+    ],
   },
+
   {
     timestamps: true,
   }

@@ -1,9 +1,9 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
-const { userService } = require('../services');
+const { questionService } = require('../services');
 
-const createPatient = catchAsync(async (req, res) => {
-  const user = await userService.createPatient(req.body);
+const createQuestion = catchAsync(async (req, res) => {
+  const user = await questionService.createQuestion(req.body);
   res.status(httpStatus.CREATED).send(user);
 });
 
@@ -27,7 +27,7 @@ const getPatients = catchAsync(async (req, res) => {
 });
 
 module.exports = {
-  createPatient,
+  createQuestion,
   createReport,
   getReports,
   getPatients

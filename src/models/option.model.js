@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { toJSON } = require('./plugins');
-const { OptionTypes } = require('../config/Options');
 
 const optionSchema = mongoose.Schema(
   {
