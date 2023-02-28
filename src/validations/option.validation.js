@@ -2,12 +2,12 @@ const Joi = require('joi');
 const { reportStatus } = require('../config/constants');
 const { objectId } = require('./custom.validation');
 
-const createPatient = {
+const createOption = {
+  params: Joi.object().keys({
+    id: Joi.string().custom(objectId),
+  }),
   body: Joi.object().keys({
-    phone: Joi.string().required(),
-    name: Joi.string().required(),
-    age: Joi.number().required(),
-    gender: Joi.string().required().valid('male', 'female'),
+    content: Joi.string().required(),
   }),
 };
 
@@ -36,7 +36,7 @@ const getPatients = {
 };
 
 module.exports = {
-  createPatient,
+  createOption,
   createReport,
   getReports,
   getPatients,

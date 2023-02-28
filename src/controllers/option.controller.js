@@ -1,10 +1,10 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
-const { userService } = require('../services');
+const { optionService } = require('../services');
 
-const createPatient = catchAsync(async (req, res) => {
-  const user = await userService.createPatient(req.body);
-  res.status(httpStatus.CREATED).send(user);
+const createOption = catchAsync(async (req, res) => {
+  const option = await optionService.createOption(req.params.id, req.body);
+  res.status(httpStatus.CREATED).send(option);
 });
 
 const createReport = catchAsync(async (req, res) => {
@@ -27,7 +27,7 @@ const getPatients = catchAsync(async (req, res) => {
 });
 
 module.exports = {
-  createPatient,
+  createOption,
   createReport,
   getReports,
   getPatients

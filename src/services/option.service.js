@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
 const config = require('../config/config');
-const { Token } = require('../models');
+const { Token, Option, Question } = require('../models');
 const { tokenTypes } = require('../config/tokens');
 
 /**
@@ -12,14 +12,15 @@ const { tokenTypes } = require('../config/tokens');
  * @param {string} [secret]
  * @returns {string}
  */
-const generateToken = (userId, expires, type, secret = config.jwt.secret) => {
-  const payload = {
-    sub: userId,
-    iat: moment().unix(),
-    exp: expires.unix(),
-    type,
-  };
-  return jwt.sign(payload, secret);
+const createOption = async (questionId, payload) => {
+  const option = await Option.create({
+    question: questionId,
+    content: payload.content,
+  });
+  await Question.findByIdAndUpdate(questionId, {
+    $push: { options: option.id },
+  });
+  return option;
 };
 
 /**
@@ -83,7 +84,7 @@ const generateAuthTokens = async (user) => {
 };
 
 module.exports = {
-  generateToken,
+  createOption,
   saveToken,
   verifyToken,
   generateAuthTokens,
