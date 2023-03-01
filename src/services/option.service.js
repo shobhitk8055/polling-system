@@ -3,6 +3,8 @@ const moment = require('moment');
 const config = require('../config/config');
 const { Token, Option, Question } = require('../models');
 const { tokenTypes } = require('../config/tokens');
+const ApiError = require('../utils/ApiError');
+const httpStatus = require('http-status');
 
 /**
  * Generate token
@@ -32,15 +34,16 @@ const createOption = async (questionId, payload) => {
  * @param {boolean} [blacklisted]
  * @returns {Promise<Token>}
  */
-const saveToken = async (token, userId, expires, type, blacklisted = false) => {
-  const tokenDoc = await Token.create({
-    token,
-    user: userId,
-    expires: expires.toDate(),
-    type,
-    blacklisted,
-  });
-  return tokenDoc;
+const deleteOption = async (optionId) => {
+  const option = await Option.findById(optionId);
+  if(!option){
+    throw new ApiError(httpStatus.NOT_FOUND, 'Option not found');
+  }
+  if(option.votes > 0){
+    throw new ApiError(httpStatus.BAD_REQUEST, "This option can't be deleted because people have voted to this question");
+  }else{
+    return await option.remove();
+  }
 };
 
 /**
@@ -85,7 +88,7 @@ const generateAuthTokens = async (user) => {
 
 module.exports = {
   createOption,
-  saveToken,
+  deleteOption,
   verifyToken,
   generateAuthTokens,
 };

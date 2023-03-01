@@ -7,11 +7,10 @@ const createOption = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(option);
 });
 
-const createReport = catchAsync(async (req, res) => {
-  const patientId = req.params.id;
-  req.body.doctor = req.user._id;
-  const report = await userService.createReport(patientId, req.body);
-  res.status(httpStatus.CREATED).send(report);
+const deleteOption = catchAsync(async (req, res) => {
+  const optionId = req.params.id;
+  await optionService.deleteOption(optionId);
+  res.status(httpStatus.OK).send({ message: "Option deleted successfully!"});
 });
 
 const getReports = catchAsync(async (req, res) => {
@@ -28,7 +27,7 @@ const getPatients = catchAsync(async (req, res) => {
 
 module.exports = {
   createOption,
-  createReport,
+  deleteOption,
   getReports,
   getPatients
 };

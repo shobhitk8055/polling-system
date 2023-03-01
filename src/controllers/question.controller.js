@@ -7,28 +7,23 @@ const createQuestion = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(user);
 });
 
-const createReport = catchAsync(async (req, res) => {
-  const patientId = req.params.id;
-  req.body.doctor = req.user._id;
-  const report = await userService.createReport(patientId, req.body);
-  res.status(httpStatus.CREATED).send(report);
+const deleteQuestion = catchAsync(async (req, res) => {
+  const questionId = req.params.id;
+  await questionService.deleteQuestion(questionId);
+  res.status(httpStatus.OK).send({ message: "Question deleted successfully!"});
 });
 
-const getReports = catchAsync(async (req, res) => {
-  const patientId = req.params.id;
-  const result = await userService.queryReports(patientId);
-  res.send(result);
-});
-
-const getPatients = catchAsync(async (req, res) => {
-  const status = req.params.status;
-  const result = await userService.getPatientsFromStatus(status);
-  res.send(result);
+const getQuestion = catchAsync(async (req, res) => {
+  const questionId = req.params.id;
+  const result = await questionService.getQuestion(questionId);
+  if(!result){
+    throw new ApiError(httpStatus.NOT_FOUND, 'Question not found');
+  }
+  return res.send(result);
 });
 
 module.exports = {
   createQuestion,
-  createReport,
-  getReports,
-  getPatients
+  deleteQuestion,
+  getQuestion
 };

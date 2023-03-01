@@ -11,16 +11,10 @@ const createOption = {
   }),
 };
 
-const createReport = {
+const optionParam = {
   params: Joi.object().keys({
     id: Joi.string().custom(objectId),
-  }),
-  body: Joi.object().keys({
-    status: Joi.string()
-      .required()
-      .valid(...reportStatus),
-    date: Joi.date().required(),
-  }),
+  })
 };
 
 const getReports = {
@@ -37,7 +31,7 @@ const getPatients = {
 
 module.exports = {
   createOption,
-  createReport,
+  optionParam,
   getReports,
   getPatients,
 };
