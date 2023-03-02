@@ -7,12 +7,10 @@ const ApiError = require('../utils/ApiError');
 const httpStatus = require('http-status');
 
 /**
- * Generate token
- * @param {ObjectId} userId
- * @param {Moment} expires
- * @param {string} type
- * @param {string} [secret]
- * @returns {string}
+ * Create option
+ * @param {ObjectId} questionId
+ * @param {Object} payload - content for the option
+ * @returns {Promise<Option>} option
  */
 const createOption = async (questionId, payload) => {
   const option = await Option.create({
@@ -26,13 +24,9 @@ const createOption = async (questionId, payload) => {
 };
 
 /**
- * Save a token
- * @param {string} token
- * @param {ObjectId} userId
- * @param {Moment} expires
- * @param {string} type
- * @param {boolean} [blacklisted]
- * @returns {Promise<Token>}
+ * Deletes option
+ * @param {ObjectId} optionId
+ * @returns {Promise<void>} void
  */
 const deleteOption = async (optionId) => {
   const option = await Option.findById(optionId);
@@ -49,10 +43,9 @@ const deleteOption = async (optionId) => {
 };
 
 /**
- * Verify token and return token doc (or throw an error if it is not valid)
- * @param {string} token
- * @param {string} type
- * @returns {Promise<Token>}
+ * Add vote to an option
+ * @param {ObjectId} optionId
+ * @returns {Promise<Option>}
  */
 const addVote = async (optionId) => {
   const option = await Option.findById(optionId);

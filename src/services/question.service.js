@@ -4,20 +4,18 @@ const ApiError = require('../utils/ApiError');
 const { Question, Option } = require('../models');
 
 /**
- * Login with username and password
- * @param {string} email
- * @param {string} password
- * @returns {Promise<User>}
+ * Create question
+ * @param {object} payload - question content
+ * @returns {Promise<Option>}
  */
 const createQuestion = async (payload) => {
   return Question.create(payload);
 };
 
 /**
- * Login with username and password
- * @param {string} email
- * @param {string} password
- * @returns {Promise<User>}
+ * Deletes question
+ * @param {ObjectId} questionId
+ * @returns {Promise<void>}
  */
 const deleteQuestion = async (questionId) => {
   const question = await getQuestion(questionId);
@@ -32,10 +30,9 @@ const deleteQuestion = async (questionId) => {
 };
 
 /**
- * Login with username and password
- * @param {string} email
- * @param {string} password
- * @returns {Promise<User>}
+ * Gets question along with the answers
+ * @param {ObjectId} questionId
+ * @returns {Promise<Question>}
  */
 const getQuestion = async (questionId) => {
   const question = await Question.findById(questionId).populate('options');
