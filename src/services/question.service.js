@@ -21,12 +21,14 @@ const createQuestion = async (payload) => {
  */
 const deleteQuestion = async (questionId) => {
   const question = await getQuestion(questionId);
-  if (question.options.some((i) => i.votes > 0)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "This question can't be deleted because people have voted to this question");
-  } else {
-    await Option.deleteMany({ question: questionId });
-    return Question.findByIdAndDelete(questionId);
+  if (!question) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Question not found');
   }
+  if (question.options.length > 0 && question.options.some((i) => i.votes > 0)) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "This question can't be deleted because people have voted to this question");
+  }
+  await Option.deleteMany({ question: questionId });
+  return Question.findByIdAndDelete(questionId);
 };
 
 /**

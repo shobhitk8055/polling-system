@@ -7,7 +7,6 @@ const optionController = require('../../controllers/option.controller');
 const router = express.Router();
 
 router.delete('/:id/delete', validate(optionParam), optionController.deleteOption);
-// router.post('/:id/create_report', auth(), validate(createReport), patientController.createReport);
-// router.get('/:id/all_reports', auth(), validate(getReports), patientController.getReports);
+router.get('/:id/add_vote', validate(optionParam), optionController.addVote);
 
 module.exports = router;

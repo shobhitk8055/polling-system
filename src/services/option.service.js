@@ -36,13 +36,15 @@ const createOption = async (questionId, payload) => {
  */
 const deleteOption = async (optionId) => {
   const option = await Option.findById(optionId);
-  if(!option){
+  if (!option) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Option not found');
   }
-  if(option.votes > 0){
+  const questionId = option.question;
+  if (option.votes > 0) {
     throw new ApiError(httpStatus.BAD_REQUEST, "This option can't be deleted because people have voted to this question");
-  }else{
-    return await option.remove();
+  } else {
+    await option.remove();
+    await Question.findByIdAndUpdate(questionId, { $pull: { options: optionId } });
   }
 };
 
@@ -52,43 +54,18 @@ const deleteOption = async (optionId) => {
  * @param {string} type
  * @returns {Promise<Token>}
  */
-const verifyToken = async (token, type) => {
-  const payload = jwt.verify(token, config.jwt.secret);
-  const tokenDoc = await Token.findOne({ token, type, user: payload.sub, blacklisted: false });
-  if (!tokenDoc) {
-    throw new Error('Token not found');
+const addVote = async (optionId) => {
+  const option = await Option.findById(optionId);
+  if (!option) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Option not found!');
   }
-  return tokenDoc;
-};
-
-/**
- * Generate auth tokens
- * @param {User} user
- * @returns {Promise<Object>}
- */
-const generateAuthTokens = async (user) => {
-  const accessTokenExpires = moment().add(config.jwt.accessExpirationMinutes, 'minutes');
-  const accessToken = generateToken(user.id, accessTokenExpires, tokenTypes.ACCESS);
-
-  const refreshTokenExpires = moment().add(config.jwt.refreshExpirationDays, 'days');
-  const refreshToken = generateToken(user.id, refreshTokenExpires, tokenTypes.REFRESH);
-  await saveToken(refreshToken, user.id, refreshTokenExpires, tokenTypes.REFRESH);
-
-  return {
-    access: {
-      token: accessToken,
-      expires: accessTokenExpires.toDate(),
-    },
-    refresh: {
-      token: refreshToken,
-      expires: refreshTokenExpires.toDate(),
-    },
-  };
+  option.votes = option.votes + 1;
+  await option.save();
+  return option;
 };
 
 module.exports = {
   createOption,
   deleteOption,
-  verifyToken,
-  generateAuthTokens,
+  addVote,
 };
