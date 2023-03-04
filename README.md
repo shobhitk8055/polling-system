@@ -5,8 +5,8 @@ This project is basically a backend for polling system. Users can add questions 
 
 1. Start your mongodb server
 2. Copy .env.example file to .env
-3. 
-3. Run "npm install" in the root directory of the project
-4. Run "npm run dev"
+3. Update database string, port number and backend url/domain in .env file
+4. Run "npm install" in the root directory of the project
+5. Run "npm run dev"
 
 Project will start on port 3000, you can change port in env file if needed.
