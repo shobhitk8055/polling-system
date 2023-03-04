@@ -36,6 +36,12 @@ const deleteQuestion = async (questionId) => {
  */
 const getQuestion = async (questionId) => {
   const question = await Question.findById(questionId).populate('options');
+  if (!question) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Question not found');
+  }
+  question.options.forEach(i => {
+    i.link_to_vote = `${process.env.BACKEND}/option/${i.id}/add_vote`;
+  })
   return question;
 };
 

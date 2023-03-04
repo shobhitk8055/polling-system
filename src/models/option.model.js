@@ -17,6 +17,10 @@ const optionSchema = mongoose.Schema(
       ref: 'Question',
       required: true,
     },
+    link_to_vote: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,

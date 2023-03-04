@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { toJSON } = require('./plugins');
-const { QuestionStatus } = require('../config/constants');
 
 const questionSchema = mongoose.Schema(
   {

@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const { reportStatus } = require('../config/constants');
 const { objectId } = require('./custom.validation');
 
 const createOption = {
@@ -23,15 +22,8 @@ const getReports = {
   }),
 };
 
-const getPatients = {
-  params: Joi.object().keys({
-    status: Joi.string().valid(...reportStatus),
-  }),
-};
-
 module.exports = {
   createOption,
   optionParam,
   getReports,
-  getPatients,
 };
